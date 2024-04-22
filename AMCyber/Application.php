@@ -1,33 +1,23 @@
 <?php
-    namespace AMCyber;
-    class Application
+
+namespace AMCyber;
+
+use AMCyber\Controllers\NotFoundController;
+
+class Application
+{
+    private $controller;
+    private function setApp()
     {
-        private $controller;
-        private function setApp(){
-
-            $loadname = 'AMCyber\Controllers\\';
-            $url = explode ('/', @$_GET['url']);
-
-            if($url[0] == ''){
-                $loadname.='Home';
-            } else{
-                $loadname.=ucfirst(strtolower($url[0]));
-            }
-
-            $loadname.='Controller';
-
-            if(file_exists($loadname.'.php')){
-                $this->controller = new $loadname();
-            } else{
-                include('Views/pages/404.php');
-                die();
-            }
-
-        }
-
-        public function run(){
-            $this->setApp();
-            $this->controller->index();
-        } 
+        $loadname = 'AMCyber\Controllers\\';
+        $url = $_GET['url'] ?? 'home';
+        $loadname .= ucfirst(strtolower($url)) . "Controller";
+        $this->controller = file_exists($loadname . '.php') ? (new $loadname()) : new NotFoundController();
     }
-?>
+
+    public function run()
+    {
+        $this->setApp();
+        $this->controller->index();
+    }
+}
