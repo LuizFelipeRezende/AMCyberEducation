@@ -1,11 +1,10 @@
 <?php   
     
     session_start();
+
     require('vendor/autoload.php');
-    
-    define('INCLUDE_PATH_STATIC','http://localhost/projetotcc/AMCyber/Views/pages/');
-    
-    $app = new AMCyber\Application();
-    
-    $app->run();
+    define("PUBLIC_ASSETS_CSS", "http://localhost:8000/public/assets/css/");
+    define("ROUTE", "http://localhost:8000?url=");
+
+    (new AMCyber\Application())->run();
 ?>
