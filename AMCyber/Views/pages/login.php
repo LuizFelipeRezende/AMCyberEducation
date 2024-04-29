@@ -8,6 +8,9 @@
 </head>
 <body>
     <div class="box">
+    <?
+        $pdo = MySql::connect();
+    ?>
         <form>
             <h2>Login</h2>
             <div class="inputBox">
@@ -21,7 +24,7 @@
                 <i></i>
             </div>
             <div class="links">
-                <a href="#">Esqueci minha senha</a>
+                <a></a>
             </div>
             <input type="submit" value="Entrar">
         </form>
