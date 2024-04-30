@@ -1,12 +1,11 @@
 <?php
 
-    namespace AMCyber\Views;
+namespace AMCyber\Views;
 
-        class MainView{
-
-            public static function render ($filename){
-                include('pages/'.$filename.'.php');
-            }
-        }
-
-?>
+class MainView
+{
+    public static function render($filename, $pdo = null)
+    {
+        include('pages/' . $filename . '.php');
+    }
+}
